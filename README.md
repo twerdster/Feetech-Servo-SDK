@@ -1,12 +1,31 @@
-# Feetech-Servo-SDK [![Platforms](https://img.shields.io/badge/Raspberry%20Pi-A22846?style=for-the-badge&logo=Raspberry%20Pi&logoColor=white)](https://img.shields.io/badge/Raspberry%20Pi-A22846?style=for-the-badge&logo=Raspberry%20Pi&logoColor=white) [![Language](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) [![IDE](https://img.shields.io/badge/PyCharm-000000.svg?&style=for-the-badge&logo=PyCharm&logoColor=white)](https://img.shields.io/badge/PyCharm-000000.svg?&style=for-the-badge&logo=PyCharm&logoColor=white) [![adam package](https://img.shields.io/badge/adam_package-red?style=for-the-badge&logo=python&logoColor=white)](https://github.com/Adam-Software)
+# Feetech-Servo-SDK
 
+[![Python](https://img.shields.io/badge/code-Python-3776AB?logo=python&logoColor=white)](scservo_sdk)
+[![ID-range scanning](https://img.shields.io/badge/servo%20IDs-1%E2%80%93253-555555)](#this-copy-id-range-scanning-in-pingpy)
+[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-green)](LICENSE)
 
-[![License](https://img.shields.io/github/license/Adam-Software/Feetech-Servo-SDK.svg)](https://img.shields.io/github/license/Adam-Software/Feetech-Servo-SDK.svg)
-[![PyPI version](https://badge.fury.io/py/feetech-servo-sdk.svg)](https://badge.fury.io/py/feetech-servo-sdk) 
+![Abstract diagram: a Python program using scservo_sdk opens a serial port and pings servo IDs 1 to 253 on a shared servo bus](docs/images/servo-bus-scan.svg)
 
+*Abstract diagram of how the SDK and `ping.py` address servos. It is not a photo and does not record a hardware test.*
 
 This is source code from [official feetech repository](https://gitee.com/ftservo/SCServoSDK).
 The repository structure copies the structure of the [original library](https://gitee.com/ftservo/SCServoSDK/blob/e4d07f43c4c34827b2e226cf5cc706576504ebeb/SCServo_Python_200831.7z)
+
+## This copy: ID-range scanning in `ping.py`
+
+This repository ([twerdster/Feetech-Servo-SDK](https://github.com/twerdster/Feetech-Servo-SDK)) copies
+[Adam-Software/Feetech-Servo-SDK](https://github.com/Adam-Software/Feetech-Servo-SDK). Its
+`scsservo_sdk_example/ping.py` adds command-line options, scans a range of servo IDs, colours the
+output and prints a summary of the IDs and model numbers that answered:
+
+```
+python3 ping.py --device /dev/ttyUSB0 --baudrate 1000000 --protocol 0 --id_start 1 --id_end 253
+```
+
+`--protocol` is `0` for STS/SMS servos and `1` for SCS servos. Without `--device`, the script uses a
+macOS USB-serial path (`/dev/tty.usbserial-21240`) that you will usually need to change. The upstream
+usage instructions and their recorded output are kept below unchanged; they describe the original
+single-ID `ping.py`.
 
 ## Structure
 
